@@ -1,5 +1,4 @@
-import math
-
+import numpy as np
 import torch
 from torch.utils.data import DataLoader, TensorDataset
 
@@ -90,7 +89,7 @@ def test_validate():
     res = validate(
         la, dataloader, get_nll, pred_type="nn", link_approx="mc", n_samples=10
     )
-    assert res != math.nan
+    assert not np.isnan(res)
     assert isinstance(res, float)
     assert res > 0
 
@@ -102,6 +101,6 @@ def test_validate():
         link_approx="mc",
         n_samples=10,
     )
-    assert res != math.nan
+    assert not np.isnan(res)
     assert isinstance(res, float)
     assert res > 0
